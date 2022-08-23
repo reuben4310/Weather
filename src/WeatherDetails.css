@@ -1,0 +1,28 @@
+div {
+  text-align: center;
+}
+body {
+  background-image: url(./bG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+header {
+  /* font-size: 128px; */
+  font-weight: bolder;
+}
+input {
+  height: 15px;
+}
+h1 {
+  color: red;
+  font-weight: bolder;
+  font-size: 60px;
+}
+h2 {
+  color: rgb(23, 242, 52);
+  font-size: 45px;
+}
+img {
+  /* height: 150px; */
+  image-rendering: auto;
+}

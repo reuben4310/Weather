@@ -75,7 +75,7 @@ export default function Daily({
                 <InfoIcon color="primary" />
               </Tooltip>
             ))}
-        <br />
+        <br /> <br />
         {weather !== undefined &&
           weather &&
           weather.hourly.days.map((day, key) => {

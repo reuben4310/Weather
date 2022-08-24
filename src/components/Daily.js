@@ -79,7 +79,7 @@ export default function Daily({
         {weather !== undefined &&
           weather &&
           weather.hourly.days.map((day, key) => {
-            console.log("bwords", day, weather, weather.hourly.days);
+            console.log("backwords", day, weather, weather.hourly.days);
             console.log("day", day);
 
             return (

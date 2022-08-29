@@ -72,15 +72,30 @@ function App() {
             .then((weatherData1) => {
               console.log("1", weatherData1);
 
-              axios
-                .get(
-                  `https://api.weatherbit.io/v2.0/current?lat=${weatherData1.coord.lat}&lon=${weatherData1.coord.lon}&key=7f84330bfaf34b8195d028dff27c6f08`
-                )
-                .then((weatherData2) => {
-                  console.log(weatherData2.data.data[0]);
+              // axios
+              //   .get(
+              //     `https://api.weatherbit.io/v2.0/current?lat=${weatherData1.coord.lat}&lon=${weatherData1.coord.lon}&key=7f84330bfaf34b8195d028dff27c6f08`
+              //   )
+              //   .then((weatherData2) => {
+              //     console.log(weatherData2.data.data[0]);
 
+              fetch(
+                `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${weatherData0[0].PrimaryPostalCode}?unitGroup=us&key=XVZNMNJ7QTTQ8KRGPDFKXKAWL&contentType=json`
+              )
+                .then((r) => {
+                  if (!r.ok) {
+                    throw new Error(`${r.status} ${r.statusText}`);
+                  }
+                  return r.json();
+                })
+                .then((weatherDataHourly) => {
+                  console.log("Hourly", weatherDataHourly);
+                  console.log(
+                    "HourlyD",
+                    weatherDataHourly.days.map((day) => day)
+                  );
                   fetch(
-                    `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${weatherData0[0].PrimaryPostalCode}?unitGroup=us&key=XVZNMNJ7QTTQ8KRGPDFKXKAWL&contentType=json`
+                    `https://calendarific.com/api/v2/holidays?&api_key=b39a3156bc455625afcf61d6ff6fbef6982ce8ea&country=${weatherData0[0].Country.ID}&year=${year}`
                   )
                     .then((r) => {
                       if (!r.ok) {
@@ -88,62 +103,43 @@ function App() {
                       }
                       return r.json();
                     })
-                    .then((weatherDataHourly) => {
-                      console.log("Hourly", weatherDataHourly);
-                      console.log(
-                        "HourlyD",
-                        weatherDataHourly.days.map((day) => day)
-                      );
-                      fetch(
-                        `https://calendarific.com/api/v2/holidays?&api_key=b39a3156bc455625afcf61d6ff6fbef6982ce8ea&country=${weatherData0[0].Country.ID}&year=${year}`
-                      )
-                        .then((r) => {
-                          if (!r.ok) {
-                            throw new Error(`${r.status} ${r.statusText}`);
-                          }
-                          return r.json();
-                        })
 
-                        .then(
-                          (fetchData) => {
-                            console.log(
-                              fetchData.response,
-                              "fer",
-                              fetchData,
-                              "fda",
-                              fetchData.response.holidays,
-                              "fdres",
-                              fetchData.response.holidays[0],
-                              "hol",
-                              fetchData.response.holidays.map(
-                                (hol) => hol.name
-                              ),
-                              "hold",
-                              fetchData.response.holidays.map(
-                                (hol) => hol.date.iso
-                              )
-                            );
-                            console.log(
-                              "daaaaaaaaaaa",
-                              fetchData.response.holidays.map((hol) => {
-                                return hol.date.datetime;
-                              })
-                            );
-                            setHolidays(fetchData.response);
-                            console.log("holidayssss", holidays);
-                          },
-
-                          setWeather({
-                            name: weatherData1.name,
-                            state: weatherData2.data.data[0].state_code,
-                            imgSrc: `http://openweathermap.org/img/wn/${weatherData1.weather[0].icon}.png`,
-                            description: `${weatherData1.main.temp} and ${weatherData1.weather[0].description}`,
-                            hourly: weatherDataHourly,
+                    .then(
+                      (fetchData) => {
+                        console.log(
+                          fetchData.response,
+                          "fer",
+                          fetchData,
+                          "fda",
+                          fetchData.response.holidays,
+                          "fdres",
+                          fetchData.response.holidays[0],
+                          "hol",
+                          fetchData.response.holidays.map((hol) => hol.name),
+                          "hold",
+                          fetchData.response.holidays.map((hol) => hol.date.iso)
+                        );
+                        console.log(
+                          "daaaaaaaaaaa",
+                          fetchData.response.holidays.map((hol) => {
+                            return hol.date.datetime;
                           })
                         );
-                    });
+                        setHolidays(fetchData.response);
+                        console.log("holidayssss", holidays);
+                      },
+
+                      setWeather({
+                        name: weatherData1.name,
+                        state: weatherData0[0].AdministrativeArea.ID,
+                        imgSrc: `http://openweathermap.org/img/wn/${weatherData1.weather[0].icon}.png`,
+                        description: `${weatherData1.main.temp} and ${weatherData1.weather[0].description}`,
+                        hourly: weatherDataHourly,
+                      })
+                    );
                 });
             });
+          // });
         } catch (err) {
           console.error(err);
           setWeather({ error: "Not found" });

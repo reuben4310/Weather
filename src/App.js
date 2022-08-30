@@ -41,7 +41,7 @@ function App() {
     const units = "imperial";
 
     // USE YOUR OWN API KEY - REGISTER AT https://home.openweathermap.org/users/sign_up
-    const apiKey = "e41b9bd72d888b5f53280897fbe53b23";
+    const APIKey = "e41b9bd72d888b5f53280897fbe53b23";
 
     fetch(
       `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=HUPvlAra2l0ibCupJfsItjlGKq8OapdX&q=${city}`
@@ -60,7 +60,7 @@ function App() {
         //axios didn't work for this API
         try {
           fetch(
-            `http://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&zip=${weatherData0[0].PrimaryPostalCode}&units=${units}`
+            `http://api.openweathermap.org/data/2.5/weather?appid=${APIKey}&zip=${weatherData0[0].PrimaryPostalCode}&units=${units}`
           )
             .then((r) => {
               if (!r.ok) {

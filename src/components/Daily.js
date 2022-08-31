@@ -86,7 +86,7 @@ export default function Daily({
               <>
                 <span key={key}>
                   <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <Table sx={{ minWidth: "75%" }} aria-label="simple table">
                       <TableHead></TableHead>
                       <TableBody>
                         <TableRow>

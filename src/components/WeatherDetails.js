@@ -99,21 +99,22 @@ export default function Details({
         holidays.holidays
           .map((holiday) => holiday)
           .filter((holiday) => holiday.date.iso === currentDate)
-          .map((holiday) => holiday.name)}
-      {/* Tooltip map */}
-      {holidays &&
-        holidays.holidays
-          .map((holiday) => holiday)
-          .filter((holiday) => holiday.date.iso === currentDate)
-          .map((holiday) => (
-            <Tooltip
-              title={`${holiday.description}     
+          .map((holiday) => {
+            return (
+              <li>
+                {holiday.name}
+                {/* Tooltip map */}
+                <Tooltip
+                  title={`${holiday.description}     
           Countries with this holiday: ${holiday.locations}`}
-              placement="right"
-            >
-              <InfoIcon color="primary" />
-            </Tooltip>
-          ))}
+                  placement="right"
+                >
+                  <InfoIcon color="primary" />
+                </Tooltip>
+              </li>
+            );
+          })}
+
 
       {weather !== undefined && weather && (
         <>

@@ -43,7 +43,7 @@ export default function Details({
                 <Button variant="contained">{show ? "Now" : "Hourly"}</Button>
               </div>
             </Grid>
-            <Grid item xs={4} sm={3} lg={2} xl={1}>
+            <Grid item xs={3} sm={2} md={2} lg={1} l={1}>
               <div
                 onClick={() => {
                   setNewShow((currentNewShow) => !currentNewShow);
@@ -114,7 +114,6 @@ export default function Details({
               </li>
             );
           })}
-
 
       {weather !== undefined && weather && (
         <>

@@ -211,6 +211,7 @@ function App() {
         {weather && weather !== undefined ? (
           <>
             <Card
+             className="size"
               sx={{ width: "75%" }}
               style={{
                 textAlign: "center",

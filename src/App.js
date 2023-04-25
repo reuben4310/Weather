@@ -60,7 +60,7 @@ function App() {
         //axios didn't work for this API
         try {
           fetch(
-            `http://api.openweathermap.org/data/2.5/weather?appid=${APIKey}&zip=${weatherData0[0].PrimaryPostalCode}&units=${units}`
+            `https://api.openweathermap.org/data/2.5/weather?appid=${APIKey}&zip=${weatherData0[0].PrimaryPostalCode}&units=${units}`
           )
             .then((r) => {
               if (!r.ok) {

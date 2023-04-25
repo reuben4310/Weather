@@ -44,7 +44,7 @@ function App() {
     const APIKey = "e41b9bd72d888b5f53280897fbe53b23";
 
     fetch(
-      `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=HUPvlAra2l0ibCupJfsItjlGKq8OapdX&q=${city}`
+      `https://dataservice.accuweather.com/locations/v1/cities/search?apikey=HUPvlAra2l0ibCupJfsItjlGKq8OapdX&q=${city}`
     )
       .then((r) => {
         if (!r.ok) {
